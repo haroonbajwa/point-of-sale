@@ -83,7 +83,6 @@ const Layout = () => {
       icon: <Inventory />,
       subItems: [
         { name: "Products", path: "/inventory/products" },
-        { name: "Add/Edit/Delete Product", path: "/inventory/manage-products" },
         { name: "Categories", path: "/inventory/categories" },
         { name: "Stock Management", path: "/inventory/stock-management" },
         { name: "Low Stock Alerts", path: "/inventory/low-stock" },
