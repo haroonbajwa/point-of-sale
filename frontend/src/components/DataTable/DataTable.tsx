@@ -32,14 +32,14 @@ const rows = [
 const paginationModel = { page: 0, pageSize: 5 };
 
 interface DataTable {
-  addModalTitle: string;
+  title: string;
   addModalBody: React.ReactNode;
   handleAddSubmit: () => void;
   addModalWidth: number;
 }
 
 const DataTable: React.FC<DataTable> = ({
-  addModalTitle,
+  title,
   addModalBody,
   handleAddSubmit,
   addModalWidth,
@@ -64,8 +64,8 @@ const DataTable: React.FC<DataTable> = ({
         >
           <InputBase
             sx={{ ml: 1, flex: 1 }}
-            placeholder="Search products"
-            inputProps={{ "aria-label": "search products" }}
+            placeholder="Search"
+            inputProps={{ "aria-label": "search" }}
           />
           <IconButton type="button" sx={{ p: "5px" }} aria-label="search">
             <GridSearchIcon />
@@ -77,7 +77,7 @@ const DataTable: React.FC<DataTable> = ({
           startIcon={<Add />}
           onClick={() => setOpen(true)}
         >
-          Add product
+          Add {title}
         </Button>
       </Box>
       <Paper>
@@ -95,7 +95,7 @@ const DataTable: React.FC<DataTable> = ({
       <ModalComponent
         isOpen={open}
         onClose={() => setOpen(false)}
-        title={addModalTitle}
+        title={`Add new ${title}`}
         body={addModalBody}
         width={addModalWidth}
         onSubmit={handleAddSubmit}

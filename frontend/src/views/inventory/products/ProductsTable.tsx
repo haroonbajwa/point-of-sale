@@ -169,7 +169,7 @@ const ProductsTable = () => {
 
   return (
     <DataTable
-      addModalTitle="Add New Product"
+      title="product"
       addModalBody={formElement()}
       handleAddSubmit={handleSubmit}
       addModalWidth={80}

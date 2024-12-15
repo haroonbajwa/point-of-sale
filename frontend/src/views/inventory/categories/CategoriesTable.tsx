@@ -152,7 +152,7 @@ const CategoriesTable = () => {
 
   return (
     <DataTable
-      addModalTitle="Add new category"
+      title="category"
       addModalBody={formElement()}
       handleAddSubmit={handleSubmit}
       addModalWidth={80}
