@@ -17,29 +17,23 @@ import {
 import { FileUpload } from "@mui/icons-material";
 import DataTable from "../../../components/DataTable/DataTable";
 
-// Example product categories
-const productCategories = [
-  "Electronics",
-  "Clothing",
-  "Books",
-  "Home Appliances",
-];
+// example data
+const parentCategories = ["Food", "Drinks", "Snacks"];
 
-const ProductsTable = () => {
+const CategoriesTable = () => {
   const [formValues, setFormValues] = useState({
-    productName: "",
-    productSKU: "",
-    category: "",
-    price: 0,
-    stockQuantity: 0,
+    categoryCode: "",
+    categoryName: "",
+    parentCategory: "",
     description: "",
-    productImage: null,
-    isActive: true,
+    categoryImage: null,
+    stockTracking: false,
+    defaultTaxRate: 0,
   });
 
   const handleInputChange = (e: React.ChangeEvent | SelectChangeEvent) => {
     const { name, value, checked, type, files } = e.target as HTMLInputElement;
-
+    // Handling the value based on input type
     const newValue =
       type === "checkbox"
         ? checked
@@ -56,13 +50,13 @@ const ProductsTable = () => {
   };
 
   const handleSubmit = () => {
-    console.log("Submitted Product Data:", formValues);
+    console.log("Submitted Data modal...", formValues);
   };
 
   const formElement = () => (
     <Box component="form">
       <Typography variant="h6" fontSize={18}>
-        Product Information
+        Basic Information
       </Typography>
       <Divider />
 
@@ -70,58 +64,37 @@ const ProductsTable = () => {
         <Grid size={{ xs: 12, md: 4 }}>
           <TextField
             fullWidth
-            label="Product Name"
-            name="productName"
-            required
-            value={formValues.productName}
+            label="Category Code"
+            name="categoryCode"
+            value={formValues.categoryCode}
             onChange={handleInputChange}
           />
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
           <TextField
             fullWidth
-            label="Product SKU"
-            name="productSKU"
+            label="Category Name"
+            name="categoryName"
             required
-            value={formValues.productSKU}
+            value={formValues.categoryName}
             onChange={handleInputChange}
           />
         </Grid>
         <Grid size={{ xs: 12, md: 4 }}>
           <FormControl fullWidth>
-            <InputLabel>Category</InputLabel>
+            <InputLabel>Parent Category</InputLabel>
             <Select
-              name="category"
-              value={formValues.category}
+              name="parentCategory"
+              value={formValues.parentCategory}
               onChange={handleInputChange}
             >
-              {productCategories.map((category) => (
+              {parentCategories.map((category) => (
                 <MenuItem key={category} value={category}>
                   {category}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
-        </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <TextField
-            fullWidth
-            name="price"
-            label="Price ($)"
-            type="number"
-            value={formValues.price}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <TextField
-            fullWidth
-            name="stockQuantity"
-            label="Stock Quantity"
-            type="number"
-            value={formValues.stockQuantity}
-            onChange={handleInputChange}
-          />
         </Grid>
         <Grid size={{ xs: 12 }}>
           <TextField
@@ -138,12 +111,12 @@ const ProductsTable = () => {
           <FormControlLabel
             control={
               <Switch
-                name="isActive"
-                checked={formValues.isActive}
+                name="stockTracking"
+                checked={formValues.stockTracking}
                 onChange={handleInputChange}
               />
             }
-            label="Is Active"
+            label="Enable Stock Tracking"
           />
         </Grid>
         <Grid size={{ xs: 12, md: 3 }}>
@@ -154,14 +127,24 @@ const ProductsTable = () => {
             component="label"
             startIcon={<FileUpload />}
           >
-            Upload Image
+            Image
             <input
-              name="productImage"
+              name="categoryImage"
               type="file"
               hidden
               onChange={handleInputChange}
             />
           </Button>
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <TextField
+            fullWidth
+            name="defaultTaxRate"
+            label="Default Tax Rate (%)"
+            type="number"
+            value={formValues.defaultTaxRate}
+            onChange={handleInputChange}
+          />
         </Grid>
       </Grid>
     </Box>
@@ -169,7 +152,7 @@ const ProductsTable = () => {
 
   return (
     <DataTable
-      addModalTitle="Add New Product"
+      addModalTitle="Add new category"
       addModalBody={formElement()}
       handleAddSubmit={handleSubmit}
       addModalWidth={80}
@@ -177,4 +160,4 @@ const ProductsTable = () => {
   );
 };
 
-export default ProductsTable;
+export default CategoriesTable;

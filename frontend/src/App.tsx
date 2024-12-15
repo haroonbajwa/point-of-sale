@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import ProductsTable from "./views/inventory/products/ProductsTable";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
-import AddCategory from "./views/inventory/categories/AddCategory";
+import CategoriesTable from "./views/inventory/categories/CategoriesTable";
 
 const Dashboard = () => <h1>Dashboard</h1>;
 
@@ -16,7 +16,7 @@ const App = () => {
 
           {/* products routes */}
           <Route path="/inventory/products" element={<ProductsTable />} />
-          <Route path="/inventory/categories" element={<AddCategory />} />
+          <Route path="/inventory/categories" element={<CategoriesTable />} />
         </Route>
       </Routes>
     </Router>

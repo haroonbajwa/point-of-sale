@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { DataGrid, GridColDef, GridSearchIcon } from "@mui/x-data-grid";
 import { Box, Button, IconButton, InputBase } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import { Add } from "@mui/icons-material";
+import ModalComponent from "../Modal/Modal";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
@@ -29,7 +31,20 @@ const rows = [
 
 const paginationModel = { page: 0, pageSize: 5 };
 
-export default function DataTable() {
+interface DataTable {
+  addModalTitle: string;
+  addModalBody: React.ReactNode;
+  handleAddSubmit: () => void;
+  addModalWidth: number;
+}
+
+const DataTable: React.FC<DataTable> = ({
+  addModalTitle,
+  addModalBody,
+  handleAddSubmit,
+  addModalWidth,
+}) => {
+  const [open, setOpen] = useState(false);
   return (
     <>
       <Box
@@ -57,7 +72,11 @@ export default function DataTable() {
           </IconButton>
         </Paper>
 
-        <Button variant="contained" startIcon={<Add />}>
+        <Button
+          variant="contained"
+          startIcon={<Add />}
+          onClick={() => setOpen(true)}
+        >
           Add product
         </Button>
       </Box>
@@ -71,6 +90,18 @@ export default function DataTable() {
           sx={{ border: 0 }}
         />
       </Paper>
+
+      {/* Add record Modal */}
+      <ModalComponent
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title={addModalTitle}
+        body={addModalBody}
+        width={addModalWidth}
+        onSubmit={handleAddSubmit}
+      />
     </>
   );
-}
+};
+
+export default DataTable;
