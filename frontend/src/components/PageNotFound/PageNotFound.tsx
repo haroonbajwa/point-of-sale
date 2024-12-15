@@ -23,7 +23,7 @@ const PageNotFound = () => {
       </Typography>
       <Button
         variant="contained"
-        color="primary"
+        color="secondary"
         onClick={() => navigate(-1)}
         sx={{ mt: 2 }}
       >

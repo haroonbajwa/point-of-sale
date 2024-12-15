@@ -172,6 +172,8 @@ const Layout = () => {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
+            color: "primary.contrastText",
+            backgroundColor: "primary.light",
           },
         }}
       >
@@ -181,7 +183,9 @@ const Layout = () => {
             {menuItems.map((item) => (
               <React.Fragment key={item.name}>
                 <ListItemButton onClick={() => handleCollapseToggle(item.name)}>
-                  <ListItemIcon sx={{ minWidth: "40px" }}>
+                  <ListItemIcon
+                    sx={{ minWidth: "40px", color: "primary.contrastText" }}
+                  >
                     {item.icon}
                   </ListItemIcon>
                   <ListItemText primary={item.name} />
