@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { FileUpload } from "@mui/icons-material";
 import DataTable from "../../../components/DataTable/DataTable";
+import { GridColDef } from "@mui/x-data-grid";
 
 // Example product categories
 const productCategories = [
@@ -58,6 +59,63 @@ const ProductsTable = () => {
   const handleSubmit = () => {
     console.log("Submitted Product Data:", formValues);
   };
+
+  const columns: GridColDef[] = [
+    { field: "categoryImage", headerName: "Image", width: 130 },
+    { field: "categoryCode", headerName: "Code", width: 70 },
+    { field: "categoryName", headerName: "Name", width: 130 },
+    { field: "parentCategory", headerName: "Parent category", width: 130 },
+    { field: "description", headerName: "description", width: 130 },
+    { field: "stockTracking", headerName: "Stock tracking", width: 130 },
+    { field: "defaultTaxRate", headerName: "Default tax rate (%)", width: 130 },
+  ];
+  const data = [
+    {
+      categoryImage: "https://example.com/image1.jpg",
+      categoryCode: "CAT1",
+      categoryName: "Electronics",
+      parentCategory: "Root",
+      description: "A category for electronic devices.",
+      stockTracking: "Yes",
+      defaultTaxRate: 10,
+    },
+    {
+      categoryImage: "https://example.com/image2.jpg",
+      categoryCode: "CAT2",
+      categoryName: "Clothing",
+      parentCategory: "Root",
+      description: "A category for clothing items.",
+      stockTracking: "Yes",
+      defaultTaxRate: 8,
+    },
+    {
+      categoryImage: "https://example.com/image3.jpg",
+      categoryCode: "CAT3",
+      categoryName: "Books",
+      parentCategory: "Root",
+      description: "A category for books.",
+      stockTracking: "No",
+      defaultTaxRate: 0,
+    },
+    {
+      categoryImage: "https://example.com/image4.jpg",
+      categoryCode: "CAT4",
+      categoryName: "Food",
+      parentCategory: "Root",
+      description: "A category for food items.",
+      stockTracking: "Yes",
+      defaultTaxRate: 12,
+    },
+    {
+      categoryImage: "https://example.com/image5.jpg",
+      categoryCode: "CAT5",
+      categoryName: "Furniture",
+      parentCategory: "Root",
+      description: "A category for furniture items.",
+      stockTracking: "Yes",
+      defaultTaxRate: 10,
+    },
+  ];
 
   const formElement = () => (
     <Box component="form">
@@ -169,6 +227,8 @@ const ProductsTable = () => {
 
   return (
     <DataTable
+      columns={columns}
+      data={data}
       title="product"
       addModalBody={formElement()}
       handleAddSubmit={handleSubmit}
