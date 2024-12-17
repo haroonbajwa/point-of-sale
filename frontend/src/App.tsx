@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material";
+
 import Layout from "./Layout";
 import ProductsTable from "./views/inventory/products/ProductsTable";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import CategoriesTable from "./views/inventory/categories/CategoriesTable";
-import { createTheme, ThemeProvider } from "@mui/material";
-
-const Dashboard = () => <h1>Dashboard</h1>;
+import Dashboard from "./views/dashboard/Dashboard";
 
 const theme = createTheme({
   palette: {
