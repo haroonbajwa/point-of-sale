@@ -31,6 +31,14 @@ const DataTable: React.FC<DataTable> = ({
   addModalWidth,
 }) => {
   const [open, setOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
+  // Filtered rows based on search value
+  const filteredRows = data.filter((row) =>
+    Object.values(row).some((value) =>
+      value?.toString().toLowerCase().includes(searchValue.toLowerCase())
+    )
+  );
 
   // Add actions column dynamically
   const tableColumns: GridColDef[] = [
@@ -94,6 +102,8 @@ const DataTable: React.FC<DataTable> = ({
             sx={{ ml: 1, flex: 1 }}
             placeholder="Search"
             inputProps={{ "aria-label": "search" }}
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
           <IconButton type="button" sx={{ p: "5px" }} aria-label="search">
             <GridSearchIcon />
@@ -118,7 +128,7 @@ const DataTable: React.FC<DataTable> = ({
       <Paper>
         <DataGrid
           columns={tableColumns}
-          rows={data}
+          rows={filteredRows}
           initialState={{ pagination: { paginationModel } }}
           pageSizeOptions={[5, 10]}
           hideFooterSelectedRowCount

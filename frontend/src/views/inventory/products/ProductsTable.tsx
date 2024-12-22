@@ -71,6 +71,7 @@ const ProductsTable = () => {
   ];
   const data = [
     {
+      id: 1,
       categoryImage: "https://example.com/image1.jpg",
       categoryCode: "CAT1",
       categoryName: "Electronics",
@@ -80,6 +81,7 @@ const ProductsTable = () => {
       defaultTaxRate: 10,
     },
     {
+      id: 2,
       categoryImage: "https://example.com/image2.jpg",
       categoryCode: "CAT2",
       categoryName: "Clothing",
@@ -89,6 +91,7 @@ const ProductsTable = () => {
       defaultTaxRate: 8,
     },
     {
+      id: 3,
       categoryImage: "https://example.com/image3.jpg",
       categoryCode: "CAT3",
       categoryName: "Books",
@@ -98,6 +101,7 @@ const ProductsTable = () => {
       defaultTaxRate: 0,
     },
     {
+      id: 4,
       categoryImage: "https://example.com/image4.jpg",
       categoryCode: "CAT4",
       categoryName: "Food",
@@ -107,6 +111,7 @@ const ProductsTable = () => {
       defaultTaxRate: 12,
     },
     {
+      id: 5,
       categoryImage: "https://example.com/image5.jpg",
       categoryCode: "CAT5",
       categoryName: "Furniture",
