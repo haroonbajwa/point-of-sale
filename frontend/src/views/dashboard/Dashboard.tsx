@@ -52,7 +52,7 @@ const Dashboard = () => {
       <Breadcrumb />
       <Grid container spacing={2}>
         {statsData.map((stat, index) => (
-          <Grid size={{ xs: 12, md: 3 }} key={index}>
+          <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
             <StatCard
               title={stat.title}
               value={stat.value}

@@ -1,18 +1,51 @@
 import { MoreVert } from "@mui/icons-material";
-import { IconButton, Paper } from "@mui/material";
+import { IconButton, Menu, MenuItem, Paper } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { useState } from "react";
 
 const RecentInvoices = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const renderActionButtons = () => (
-    <IconButton
-      edge="start"
-      color="inherit"
-      aria-label="menu"
-      //   onClick={toggleDrawer}
-      sx={{ mr: 2 }}
-    >
-      <MoreVert />
-    </IconButton>
+    <div>
+      <IconButton
+        edge="start"
+        color="inherit"
+        aria-haspopup="true"
+        aria-controls={open ? "demo-positioned-menu" : undefined}
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+      >
+        <MoreVert />
+      </IconButton>
+      <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+      >
+        <MenuItem onClick={handleClose}>View</MenuItem>
+        <MenuItem onClick={handleClose}>Edit</MenuItem>
+        <MenuItem onClick={handleClose}>Delete</MenuItem>
+      </Menu>
+    </div>
   );
 
   // Column Definitions for Order Invoices
@@ -22,8 +55,8 @@ const RecentInvoices = () => {
       headerName: "Invoice #",
       flex: 0.7,
       minWidth: 120,
-      headerAlign: "left",
-      align: "left",
+      headerAlign: "center",
+      align: "center",
     },
     {
       field: "dateTime",
@@ -38,14 +71,16 @@ const RecentInvoices = () => {
       headerName: "Customer Name",
       flex: 1.2,
       minWidth: 200,
+      headerAlign: "center",
+      align: "center",
     },
     {
       field: "totalAmount",
       headerName: "Total Amount ($)",
-      headerAlign: "right",
-      align: "right",
       flex: 1,
       minWidth: 120,
+      headerAlign: "center",
+      align: "center",
       //   renderCell: (params) => `$${params.value.toFixed(2)}`,
     },
     {
@@ -53,12 +88,16 @@ const RecentInvoices = () => {
       headerName: "Payment Method",
       flex: 1,
       minWidth: 150,
+      headerAlign: "center",
+      align: "center",
     },
     {
       field: "cashierName",
       headerName: "Cashier",
       flex: 1,
       minWidth: 150,
+      headerAlign: "center",
+      align: "center",
     },
     {
       field: "actions",
@@ -66,6 +105,8 @@ const RecentInvoices = () => {
       flex: 0.7,
       minWidth: 100,
       sortable: false,
+      headerAlign: "center",
+      align: "center",
       renderCell: renderActionButtons,
     },
   ];
@@ -110,7 +151,6 @@ const RecentInvoices = () => {
         }}
         pageSizeOptions={[5, 10]}
         hideFooterSelectedRowCount
-        sx={{ border: 0 }}
       />
     </Paper>
   );
