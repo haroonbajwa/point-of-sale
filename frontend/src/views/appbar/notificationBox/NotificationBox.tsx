@@ -1,13 +1,15 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import IconButton from "@mui/material/IconButton";
-import Switch from "@mui/material/Switch";
+import {
+  Box,
+  Paper,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+  Switch,
+} from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { Paper } from "@mui/material";
 
 // Define a custom hook to manage the "Only show unread" state
 function useUnreadFilter() {

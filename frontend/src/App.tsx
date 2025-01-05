@@ -2,10 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 
 import Layout from "./Layout";
-import ProductsTable from "./views/inventory/products/ProductsTable";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
-import CategoriesTable from "./views/inventory/categories/CategoriesTable";
+import Signin from "./views/auth/Signin";
 import Dashboard from "./views/dashboard/Dashboard";
+import CategoriesTable from "./views/inventory/categories/CategoriesTable";
+import ProductsTable from "./views/inventory/products/ProductsTable";
 
 const theme = createTheme({
   palette: {
@@ -29,11 +30,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
+          <Route path="/signin" element={<Signin />} />
           <Route path="/" element={<Layout />}>
             <Route path="*" element={<PageNotFound />} />
             <Route index element={<Dashboard />} />
 
-            {/* products routes */}
+            {/* inventory routes */}
             <Route path="/inventory/products" element={<ProductsTable />} />
             <Route path="/inventory/categories" element={<CategoriesTable />} />
           </Route>
